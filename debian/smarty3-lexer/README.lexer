@@ -1,0 +1,23 @@
+Obtained from:
+http://smarty-php.googlecode.com/svn/trunk/development/lexer/
+
+Smarty3 3.1.21 / SVN revision r4902.
+
+These extra sources files are used to generate the upstream release
+tarballs, but they are not included in the release tarballs themselves.
+
+The generated files in the upstream tarball are:
+
+  libs/sysplugins/smarty_internal_configfileparser.php
+  libs/sysplugins/smarty_internal_templateparser.php
+  libs/sysplugins/smarty_internal_configfilelexer.php
+  libs/sysplugins/smarty_internal_templatelexer.php
+
+We ship the source files for these generated PHP files here for the sake of
+presenting the complete sources of Smarty3 in its Debian source package.
+
+However, the better approach would be, if upstream shipped them in their
+release tarballs directly.
+
+Furthermore, in later version of this package, we have to add build code
+that uses the here prestented files to re-generate the above named PHP files.

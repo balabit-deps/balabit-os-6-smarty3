@@ -1,0 +1,42 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Smarty
+Upstream-Contact:
+ Monte Ohrt <monte@ohrt.com>
+ Uwe Tews <uwe.tews@googlemail.com>
+Source: http://www.smarty.net
+
+Files: change_log.txt
+       COPYING.lib
+       demo/*
+       libs/*
+       README
+       SMARTY_2_BC_NOTES.txt
+       SMARTY_3.0_BC_NOTES.txt
+       SMARTY_3.1_NOTES.txt
+Copyright:
+ 2001-2008, New Digital Group, Inc.
+License: LGPL-3+
+ On Debian systems, the complete text of the GNU Lesser General Public
+ License, can be found in /usr/share/common-licenses/LGPL-3 .
+
+Files: debian/smarty3-lexer/*
+Copyright:
+ 2001-2008, New Digital Group, Inc.
+License: LGPL-3+
+ On Debian systems, the complete text of the GNU Lesser General Public
+ License, can be found in /usr/share/common-licenses/LGPL-3 .
+Comment:
+ These files have been manually added to this Debian package. See
+ debian/smarty3-lexer/README.lexer for details.
+ .
+ Assuming license as found in COPYING.lib. Assuming same copyright holder
+ as the other code files in smarty3 source package.
+
+Files: debian/*
+       debian/smarty3-lexer/README.lexer
+Copyright:
+ 2010-2011, Thierry Randrianiriana <thierry@debian.org>
+ 2012, Mike Gabriel <mike.gabriel@das-netzwerkteam.de>
+License: LGPL-3+
+ On Debian systems, the complete text of the GNU General Public
+ License version 2, can be found in /usr/share/common-licenses/GPL-2 .

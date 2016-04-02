@@ -1,0 +1,56 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+#export DH_VERBOSE=1
+
+clean:
+	dh_testdir
+	dh_testroot
+	dh_clean
+
+build:
+
+install:
+	dh_testdir
+	dh_testroot
+	dh_prep
+	dh_installdirs
+	mkdir -p debian/smarty3/usr/share/doc/smarty3/
+	mkdir -p debian/smarty3/usr/share/php/smarty3/
+	cp -r demo debian/smarty3/usr/share/doc/smarty3/
+	cp -r libs/* debian/smarty3/usr/share/php/smarty3/ 
+
+binary-indep: install
+	dh_testdir
+	dh_testroot
+	dh_installdocs
+	dh_installchangelogs change_log.txt
+	dh_install
+	dh_installexamples
+	dh_lintian
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+build-arch: build
+build-indep: build
+
+binary: binary-indep binary-arch
+
+PKD   = $(abspath $(dir $(MAKEFILE_LIST)))
+PKG   = $(word 2,$(shell dpkg-parsechangelog -l$(PKD)/changelog | grep ^Source))
+UVER  = $(shell dpkg-parsechangelog -l$(PKD)/changelog | perl -ne 'print $$1 if m{^Version:\s+(?:\d+:)?(\d.*)(?:\-\d+.*)};')
+DTYPE =
+VER  ?= $(subst $(DTYPE),,$(UVER))
+
+get-orig-source: $(PKG)_$(VER)$(DTYPE).orig.tar.xz $(info I: $(PKG)_$(VER)$(DTYPE))
+	@
+
+$(PKG)_$(VER)$(DTYPE).orig.tar.xz: $(info I: $(PKG)_$(VER)$(DTYPE))
+	@echo "# Downloading..."
+	uscan --noconf --verbose --rename --destdir=$(CURDIR) --check-dirname-level=0 --force-download --destdir ../ --download-version $(VER) $(PKD)
+
+.PHONY: clean binary-indep binary-arch binary install get-orig-source
